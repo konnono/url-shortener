@@ -8,10 +8,21 @@
   <div>
     <div class="mx-auto" style="width: 500px">
       <p>Success! Please use this link:</p>
-      <a href="{{shortUrl}}">{{shortUrl}}</a>
+      <a href="{{shortUrl}}" id="shortUrl">{{shortUrl}}</a>
     </div>
     <div class="text-center mt-4">
+      <button type="button" class="btn btn-primary" onclick="copyURL()">Copy</button>
       <a class="btn btn-primary" href="/" role="button">Return</a>
     </div>
   </div>
 </div>
+
+<script>
+  function copyURL() {
+    const url = document.querySelector('#shortUrl')
+    window.getSelection().selectAllChildren(url)
+    document.execCommand("Copy")
+    window.getSelection().removeAllRanges()
+    alert(`"${url}" is copied to clipboard!`)
+  }
+</script>
