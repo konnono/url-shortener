@@ -20,13 +20,30 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   // console.log(req.body.url)
   const short = generateShortURL()
-  const shortUrl = req.get('host') + '/' + short
+  const shortUrl = 'http://' + req.get('host') + '/' + short
   console.log(shortUrl)
   ShortURL.create({
     original: req.body.url,
     short: short
   })
   res.render('shorturls', { shortUrl })
+})
+
+app.get('/:shorturl', (req, res) => {
+  const key = req.params.shorturl
+  ShortURL.findOne({ short: key })
+    .lean()
+    .then(shorturl => {
+      console.log(shorturl)
+      if (shorturl) {
+        console.log(shorturl.original)
+        res.redirect(shorturl.original)
+      } else {
+        const short = req.get('host') + '/' + key
+        res.render('notfound', { shortUrl: short })
+      }
+    })
+    .catch(err => { console.log(err) })
 })
 
 app.listen(port, () => {
