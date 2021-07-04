@@ -1,15 +1,20 @@
-<div>
-  <h1>URL Shortener</h1>
-</div>
-<div>
-  <i class="fas fa-link"></i>
-</div>
-<div>
-  <form action="/" method="POST">
-    <div class="form-group">
-      <input type="url" class="form-control" name="url" aria-describedby="shortenURL" placeholder="Input URL here..."
-        value="http://">
-    </div>
-    <button type="submit" class="btn btn-primary">Shorten</button>
-  </form>
+<div class="container" style="width: 680px">
+  <div>
+    <h1 class="text-center mt-4 mb-4">URL Shortener</h1>
+  </div>
+  <div>
+    <img src="/public/link.png" class="mb-4">
+  </div>
+  <div>
+    <form action="/" method="POST">
+      <div class="form-group mx-auto" style="width: 500px">
+        <label for="url">Input URL to shorten:</label>
+        <input type="url" class="form-control" id="url" name="url" aria-describedby="shortenURL"
+          placeholder="Input URL here..." value="http://">
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-outline-primary" style="width:200px">Shorten</button>
+      </div>
+    </form>
+  </div>
 </div>

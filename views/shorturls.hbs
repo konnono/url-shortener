@@ -1,4 +1,4 @@
-<div>
+{{!-- <div>
   <h1>URL Shortener</h1>
 </div>
 <div>
@@ -10,4 +10,22 @@
 </div>
 <div>
   <a class="btn btn-primary" href="/" role="button">Return</a>
+</div> --}}
+
+<div class="container" style="width: 680px">
+  <div>
+    <h1 class="text-center mt-4 mb-4">URL Shortener</h1>
+  </div>
+  <div>
+    <img src="/public/link.png" class="mb-4">
+  </div>
+  <div class="mb-4">
+    <div class="mx-auto" style="width: 500px">
+      <p>Success! Please use this link:</p>
+      <a href="{{shortUrl}}">{{shortUrl}}</a>
+    </div>
+    <div class="text-center">
+      <a class="btn btn-primary" href="/" role="button">Return</a>
+    </div>
+  </div>
 </div>
