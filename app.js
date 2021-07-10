@@ -18,21 +18,18 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
+  const original = req.body.protocol + '://' + req.body.url
   ShortURL.find()
     .lean()
     .then(shorturls => {
       let short = generateShortURL()
       while (shorturls.find(urls => urls.short === short)) {
-        console.log(`${short} already exist`)
         short = generateShortURL()
       }
-      console.log(`${short} can be used`)
-
       const shortUrl = 'http://' + req.get('host') + '/' + short
-      console.log(shortUrl)
       ShortURL.create({
-        original: req.body.url,
-        short: short
+        original,
+        short
       })
       res.render('shorturls', { shortUrl })
     })
@@ -43,9 +40,7 @@ app.get('/:shorturl', (req, res) => {
   ShortURL.findOne({ short: key })
     .lean()
     .then(shorturl => {
-      console.log(shorturl)
       if (shorturl) {
-        console.log(shorturl.original)
         res.redirect(shorturl.original)
       } else {
         const short = req.get('host') + '/' + key

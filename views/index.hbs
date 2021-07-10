@@ -1,20 +1,39 @@
-<div class="container" style="width: 680px">
-  <div>
-    <h1 class="text-center mt-4 mb-4">URL Shortener</h1>
-  </div>
-  <div class="mb-4 text-center">
-    <img src="https://github.com/konnono/url-shortener/blob/main/public/link.png?raw=true" width="200px" heigh="200px">
-  </div>
-  <div>
-    <form action="/" method="POST">
-      <div class="form-group mx-auto" style="width: 500px">
-        <label for="url">Input URL to shorten:</label>
-        <input type="url" class="form-control" id="url" name="url" aria-describedby="shortenURL"
-          placeholder="Input URL here..." value="http://">
+<div>
+  <form action="/" method="POST">
+    <div class="form-group mx-auto" style="width: 500px">
+      <label for="url">Input URL to shorten:</label>
+      <div class="row mx-auto">
+        <div class="form-check col-2" style="display:inline">
+          <input class="form-check-input" type="radio" name="protocol" id="protocolRadios1" value="http"
+            onchange="changeProtocol('http://')" checked>
+          <label class="form-check-label" for="protocolRadios1">
+            http://
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="protocol" id="protocolRadios2" value="https"
+            onchange="changeProtocol('https://')">
+          <label class="form-check-label" for="protocolRadios2">
+            https://
+          </label>
+        </div>
       </div>
-      <div class="text-center">
-        <button type="submit" class="btn btn-outline-primary" style="width:200px">Shorten</button>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="urlProtocol">http://</span>
+        </div>
+        <input type="text" class="form-control" id="url" name="url" aria-describedby="shortenURL"
+          placeholder="Input URL here..." required>
       </div>
-    </form>
-  </div>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-outline-primary" style="width:200px">Shorten</button>
+    </div>
+  </form>
 </div>
+
+<script>
+  function changeProtocol(protocol) {
+    document.querySelector('#urlProtocol').textContent = protocol
+  }
+</script>
