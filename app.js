@@ -22,6 +22,8 @@ app.post('/', (req, res) => {
   ShortURL.find()
     .lean()
     .then(shorturls => {
+      // 產生一組短網址"short"後檢查是否已存在於現有的資料庫"shorturls"中
+      // 如果存在，就再產出新的短網址然後檢查，重複直到確認沒有存在於"shortulrs"
       let short = generateShortURL()
       while (shorturls.find(urls => urls.short === short)) {
         short = generateShortURL()
